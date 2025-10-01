@@ -1,0 +1,72 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith Nagendra - Student Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Collapsible sections
+            document.querySelectorAll('.collapsible').forEach(function(section) {
+                section.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+            
+    
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="animated-header">Rohith Nagendra</h1>
+        
+        <div class="info"><span class="label">Grade:</span> 8th Standard</div>
+        <div class="info"><span class="label">Institution:</span> New Horizon International School</div>
+
+        <button class="collapsible">Academic Interests</button>
+        <div class="content">
+            <p>I am passionate about learning and have a special interest in robotics. I enjoy creating innovative projects, which shows my dedication to hands-on learning and problem-solving.</p>
+        </div>
+
+        <button class="collapsible">Extracurricular Activities and Hobbies</button>
+        <div class="content">
+            <p>I am actively involved in basketball, badminton, and art. I participate regularly in these activities, which help me stay physically fit and creatively engaged.</p>
+        </div>
+
+        <button class="collapsible">Personal Strengths and Skills</button>
+        <div class="content">
+            <p>I excel at building and designing school projects, demonstrating strong skills in teamwork, technology, and creativity. I am also committed to improving my social speaking skills to communicate better with my peers.</p>
+        </div>
+
+        <button class="collapsible">Achievements and Experiences</button>
+        <div class="content">
+            <p>I have contributed many projects to my school, showing responsibility and initiative in both academic and extracurricular endeavors.</p>
+        </div>
+
+        <button class="collapsible">Future Goals</button>
+        <div class="content">
+            <p>I aim to join NASA and successfully complete my degree, reflecting my aspiration for a career in space science and technology.</p>
+        </div>
+
+        <button class="collapsible">Unique Qualities</button>
+        <div class="content">
+            <p>Enthusiastic, creative, and technically skilled, I stand out for my curiosity about robotics and my drive for achievement. I am also dedicated to personal growth, especially in communication.</p>
+        </div>
+    </div>
+        <footer class="footer">
+            <div>Instagram: <a href="https://instagram.com/rohith_nagendra2011" target="_blank">ROHITH NAGENDRA</a></div>
+            <div>Email: <a href="mailto:rohithnagendra@outlook.com">rohithnagendra@outlook.com</a></div>
+            <div>GitHub: <a href="https://github.com/rohithnagendra" target="_blank">Rohith's GitHub</a></div>
+        </footer>
+    </body>
+    </html>
