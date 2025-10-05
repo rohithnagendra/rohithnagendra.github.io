@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Function Overview — OpenCV &amp; Python Demo</title>
+  <meta name="description" content="A concise blog post that explains the functions provided in the opencv_concepts_combined.py demo and points readers to the GitHub repository.">
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#f6f8fb;color:#0b1220}
+    .container{max-width:900px;margin:48px auto;padding:28px;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(15,23,42,0.06)}
+    h1{margin-top:0}
+    p.lead{color:#475569}
+    .functions{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+    .fn{border-left:4px solid #2563eb;padding:12px 14px;background:#fbfdff;border-radius:6px}
+    .fn h3{margin:0 0 6px}
+    code{background:#eef2ff;padding:2px 6px;border-radius:6px;font-family:Menlo,Monaco,Consolas,'Courier New',monospace}
+    a.btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;background:#2563eb;color:#fff;text-decoration:none}
+    footer{margin-top:20px;color:#64748b;font-size:14px}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Function Reference — OpenCV &amp; Python Demo</h1>
+    <p class="lead">This post documents the core functions provided in the combined demo script and points you to the full source on GitHub.</p>
+
+    <section class="functions">
+      <div class="fn">
+        <h3>Image utilities</h3>
+        <p><strong><code>load_image(path)</code></strong> — Load an image using OpenCV and return the BGR image or <code>None</code> if loading failed.</p>
+        <p><strong><code>show_image(winname, img, wait=True)</code></strong> — Display an image in a named window. If <code>wait</code> is <code>True</code> the function waits for a keypress and closes the window.</p>
+        <p><strong><code>print_image_info(img, name='image')</code></strong> — Print image metadata: shape, size, and dtype.</p>
+        <p><strong><code>access_pixel(img, x, y)</code></strong> — Safely read the BGR value of a pixel and print its blue channel. Returns the pixel value.</p>
+        <p><strong><code>modify_pixels(img, modifications)</code></strong> — Modify pixels in-place. Pass a dictionary like <code>{(x,y): (B,G,R)}</code> and the function will update those coordinates.</p>
+      </div>
+
+      <div class="fn">
+        <h3>Video utilities</h3>
+        <p><strong><code>capture_video(device=0)</code></strong> — Open the system camera (default device <code>0</code>) and stream frames to a window named <code>'frame'</code>. Press <code>ESC</code> to stop capture and close the window.</p>
+      </div>
+
+      <div class="fn">
+        <h3>Image analysis</h3>
+        <p><strong><code>check_image_load_and_show(path)</code></strong> — Convenience wrapper that attempts to load an image and shows it if successful, otherwise logs an error.</p>
+        <p><strong><code>classify_brightness(path)</code></strong> — Loads an image, converts to grayscale for display, computes an average brightness and classifies it as <em>dark</em>, <em>medium</em>, or <em>bright</em>.</p>
+      </div>
+
+      <div class="fn">
+        <h3>Small Python demos</h3>
+        <p><strong><code>list_demo()</code></strong> — Runs a set of list operations demonstrating indexing, slicing, append/insert/remove, and iteration.</p>
+        <p><strong><code>functions_demo()</code></strong> — Demonstrates function types: normal functions, default args, <code>*args</code>, <code>**kwargs</code>, and a lambda example.</p>
+        <p><strong><code>while_loop_demo()</code></strong> and <strong><code>for_loop_demo()</code></strong> — Simple examples of loop usage and control flow.</p>
+      </div>
+
+      <div class="fn">
+        <h3>CLI and orchestration</h3>
+        <p>The script provides a <code>main()</code> and command-line arguments so you can run individual demos or <code>--all</code> to run everything. The CLI parsing is implemented with <code>argparse</code>.</p>
+      </div>
+    </section>
+
+    <section style="margin-top:18px">
+      <p>See the full source with examples and defaults on GitHub (open the file to view code and usage examples):</p>
+      <a class="btn" href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">View on GitHub</a>
+    </section>
+
+    <footer>
+      <p>Want screenshots, inline code snippets, or a downloadable ZIP of the demo + example images? Reply and I&rsquo;ll add them.</p>
+    </footer>
+  </main>
+</body>
+</html>
