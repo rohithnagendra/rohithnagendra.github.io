@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OpenCV & Matplotlib Master — Functions Explained</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--text:#e6eef6}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.6;margin:0;background:linear-gradient(180deg,#071426 0%,#081826 100%);color:var(--text)}
+    .container{max-width:900px;margin:40px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    header{display:flex;align-items:center;gap:16px}
+    header h1{margin:0;font-size:1.8rem}
+    header p{margin:0;color:var(--muted)}
+    nav{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    nav a{color:var(--accent);text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(6,182,212,0.06);font-weight:600}
+    section.card{margin-top:22px;padding:18px;border-radius:10px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.02)}
+    section.card h2{margin:0 0 8px 0}
+    .muted{color:var(--muted);font-size:0.95rem}
+    pre{background:#031426;padding:12px;border-radius:8px;color:#cfeefb;overflow:auto}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#042027;font-weight:700;text-decoration:none}
+    footer{margin-top:28px;color:var(--muted);font-size:0.9rem}
+    .usage{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);}
+    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px;color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>OpenCV &amp; Matplotlib Master — Functions Explained</h1>
+        <p class="muted">A friendly walkthrough of each function included in the combined Python script. Run the script locally and use the CLI examples below.</p>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#play_video">Play Video</a>
+      <a href="#show_image_rgb_plot">Show Image (RGB)</a>
+      <a href="#roi_copy_paste">ROI Copy/Paste</a>
+      <a href="#hsv_conversion">HSV Conversion</a>
+      <a href="#split_channels">Split Channels</a>
+      <a href="#image_info">Image Info & Conversions</a>
+      <a href="#draw_shapes">Draw Shapes</a>
+      <a href="#plots">Matplotlib Plots</a>
+    </nav>
+
+    <section class="card" id="overview">
+      <h2>Quick overview</h2>
+      <p class="muted">This page documents a single-file Python utility that groups many small OpenCV and Matplotlib demos into functions with a CLI wrapper. It is designed for learning, experimentation, and as a reference when you want to run any demo quickly.</p>
+      <p>Primary file: <strong>opencv_matplotlib_master.py</strong></p>
+      <p>Source &amp; original combined code on GitHub: <a class="btn" href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">View on GitHub</a></p>
+    </section>
+
+    <section class="card" id="play_video">
+      <h2>play_video(video_path: str = "vtest.avi", delay_ms: int = 10)</h2>
+      <p class="muted">Opens a video file or webcam stream and plays it in an OpenCV window. Press <code>ESC</code> to exit playback.</p>
+      <h4>What it does</h4>
+      <ul>
+        <li>Accepts a filename or numeric webcam id (e.g. <code>"0"</code>).</li>
+        <li>Reads frames in a loop and shows them with <code>cv.imshow</code>.</li>
+        <li>Releases the capture and destroys windows on exit.</li>
+      </ul>
+      <div class="usage">
+        <strong>CLI example:</strong>
+        <pre>python opencv_matplotlib_master.py --video vtest.avi
+# or to use webcam
+python opencv_matplotlib_master.py --video 0</pre>
+      </div>
+    </section>
+
+    <section class="card" id="show_image_rgb_plot">
+      <h2>show_image_rgb_plot(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Loads an image with OpenCV and displays it both with OpenCV (BGR) and Matplotlib (converted to RGB).</p>
+      <h4>Why it matters</h4>
+      <p>OpenCV uses BGR ordering while Matplotlib expects RGB. This helper demonstrates correct conversion to avoid color shifts when plotting.</p>
+      <div class="usage">
+        <strong>CLI example:</strong>
+        <pre>python opencv_matplotlib_master.py --hsv lena.jpg
+# (this will show BGR via OpenCV and RGB via Matplotlib)</pre>
+      </div>
+    </section>
+
+    <section class="card" id="roi_copy_paste">
+      <h2>roi_copy_paste_example(img_path: str = "hazard10.jpg")</h2>
+      <p class="muted">Demonstrates extracting a region of interest (ROI), copying it, and pasting it elsewhere in the image. Also shows how to paint a rectangular region with a fixed BGR color.</p>
+      <h4>Notes</h4>
+      <ul>
+        <li>Coordinates were taken from the original example. For different images you will likely want to update the slice ranges.</li>
+        <li>The function uses <code>.copy()</code> when extracting ROI to avoid accidental references into the same memory.</li>
+      </ul>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --roi hazard10.jpg</pre>
+      </div>
+    </section>
+
+    <section class="card" id="hsv_conversion">
+      <h2>show_hsv_conversion_and_plot(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Converts an image to HSV and displays both the original and HSV-converted image — HSV converted to RGB for proper Matplotlib visualization.</p>
+      <h4>Teaching points</h4>
+      <ul>
+        <li>HSV separates chromatic information (H,S) from intensity (V), which is useful for color-based segmentation.</li>
+        <li>Always convert HSV back to RGB before plotting with Matplotlib.</li>
+      </ul>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --hsv lena.jpg</pre>
+      </div>
+    </section>
+
+    <section class="card" id="split_channels">
+      <h2>split_and_show_channels(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Splits the image into B, G, R channels and also into H, S, V channels for demonstration. Shows each channel using OpenCV windows.</p>
+      <h4>Important</h4>
+      <p>Channel images are single-channel gray images. You can merge them back with <code>cv.merge</code>.</p>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --split lena.jpg</pre>
+      </div>
+    </section>
+
+    <section class="card" id="image_info">
+      <h2>show_image_info_and_conversions(img_path: str = "opencv-logo.png")</h2>
+      <p class="muted">Prints shape &amp; size metadata and shows conversions: grayscale, RGB, HSV. Useful to inspect array dimensions and channel counts.</p>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --info opencv-logo.png</pre>
+      </div>
+    </section>
+
+    <section class="card" id="draw_shapes">
+      <h2>draw_shapes_example(save_to: str = None)</h2>
+      <p class="muted">Creates a blank canvas and draws common primitives: line, rectangle, circle, polygon, and text. Optionally saves the resulting image.</p>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --draw
+# or save to a file
+python opencv_matplotlib_master.py --draw shapes.png</pre>
+      </div>
+    </section>
+
+    <section class="card" id="plots">
+      <h2>Matplotlib plotting helpers</h2>
+      <p class="muted">Small functions that produce example plots: <code>plot_line_example</code>, <code>plot_bar_example</code>, <code>plot_sine_example</code>, <code>plot_scatter_example</code>.</p>
+      <div class="usage">
+        <pre>python opencv_matplotlib_master.py --plot line
+python opencv_matplotlib_master.py --plot bar
+python opencv_matplotlib_master.py --plot sine
+python opencv_matplotlib_master.py --plot scatter</pre>
+    </section>
+
+    <section class="card" id="cli-all">
+      <h2>--all (run demos sequentially)</h2>
+      <p class="muted">A convenience flag that attempts to run the demos one after another. Useful for a quick tour — note it will open windows and show plots in sequence and may require multiple key presses to proceed.</p>
+      <div class="usage"><pre>python opencv_matplotlib_master.py --all</pre></div>
+    </section>
+
+    <footer>
+      <p>Want the HTML as a downloadable file or a trimmed tutorial version? Reply and I will generate a ready-to-serve HTML file or a Markdown blog post. The original combined Python file is on GitHub: <a href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py</a></p>
+      <p class="muted">Generated: OpenCV + Matplotlib Master — documentation page.</p>
+    </footer>
+  </div>
+</body>
+</html>
