@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blynk Weather Monitor — ESP8266 + DHT11</title>
+  <style>
+    :root{--bg:#f3f6ff;--card:#ffffff;--accent:#0f4bd6;--muted:#556277}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#0b2545}
+    .wrap{max-width:980px;margin:26px auto;padding:20px}
+    header{background:linear-gradient(90deg,#123a8f,#0f78f0);color:#fff;padding:22px;border-radius:12px}
+    header h1{margin:0;font-size:22px}
+    header p{margin:6px 0 0;color:#d6e8ff}
+    .card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 8px 30px rgba(12,29,66,0.06)}
+    h2{color:var(--accent);margin-top:0}
+    pre{background:#0b1220;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
+    code{font-family:ui-monospace, SFMono-Regular,Consolas,Monaco,monospace}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .small{color:var(--muted);font-size:14px}
+    .svg-box{background:#f8fbff;border-radius:8px;padding:10px;border:1px dashed #e6efff;text-align:center}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none}
+    a{text-decoration:none;color:#0f4bd6}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Blynk Weather Monitor — ESP8266 (NodeMCU) + DHT11</h1>
+      <p>Detailed explanation for a school project — wiring, components, step-by-step flow, and troubleshooting. Find complete code on GitHub.</p>
+    </header>
+
+    <div class="grid">
+      <main class="card">
+
+        <section>
+          <h2>Project Overview</h2>
+          <p class="small">This project reads temperature and humidity from a DHT11 sensor connected to an ESP8266 (NodeMCU). The board connects to Wi‑Fi and sends readings to the <strong>Blynk</strong> cloud so they can be displayed live on a smartphone dashboard.</p>
+          <ul>
+            <li><strong>Sensor:</strong> DHT11 (temperature & humidity)</li>
+            <li><strong>Microcontroller:</strong> NodeMCU / ESP8266</li>
+            <li><strong>App:</strong> Blynk IoT (mobile app + cloud)</li>
+            <li><strong>Purpose:</strong> Learn about IoT sensors, Wi‑Fi, and data monitoring</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>GitHub Repository</h2>
+          <p class="small">The full working source code and project files are available on GitHub. You can explore, download, or fork the repository to build and test your own version of the project.</p>
+          <a class="btn" href="https://github.com/rohithnagendra/IOT/tree/main/WeatherMonitorUsingBlynk" target="_blank">🔗 View on GitHub</a>
+        </section>
+
+        <section>
+          <h2>Wiring (simple)</h2>
+          <ul class="small">
+            <li><strong>DHT11 VCC</strong> → <strong>3V3</strong> on NodeMCU</li>
+            <li><strong>DHT11 GND</strong> → <strong>GND</strong> on NodeMCU</li>
+            <li><strong>DHT11 DATA</strong> → <strong>D4 (GPIO2)</strong> on NodeMCU</li>
+          </ul>
+          <div class="svg-box" style="margin-top:12px">
+            <svg width="300" height="160" viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="140" height="120" rx="8" fill="#0b1220"/>
+              <text x="30" y="32" fill="#dbeafe" font-family="Arial">NodeMCU</text>
+              <circle cx="40" cy="60" r="6" fill="#10b981"/>
+              <text x="55" y="64" fill="#fff" font-family="Arial" font-size="12">3V3</text>
+              <circle cx="40" cy="84" r="6" fill="#ef4444"/>
+              <text x="55" y="88" fill="#fff" font-family="Arial" font-size="12">GND</text>
+              <circle cx="40" cy="108" r="6" fill="#f59e0b"/>
+              <text x="55" y="112" fill="#fff" font-family="Arial" font-size="12">D4 (GPIO2)</text>
+              <rect x="170" y="40" width="110" height="60" rx="6" fill="#ffffff" stroke="#e6efff"/>
+              <text x="188" y="60" font-family="Arial" font-size="12" fill="#0b2545">DHT11</text>
+              <text x="188" y="80" font-family="Arial" font-size="11" fill="#6b7280">VCC → 3V3</text>
+              <text x="188" y="96" font-family="Arial" font-size="11" fill="#6b7280">DATA → D4</text>
+              <text x="188" y="112" font-family="Arial" font-size="11" fill="#6b7280">GND → GND</text>
+              <line x1="46" y1="60" x2="170" y2="56" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="84" x2="170" y2="108" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="108" x2="170" y2="96" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </section>
+
+        <section>
+          <h2>How the Code Works (Summary)</h2>
+          <p class="small">The ESP8266 connects to Wi‑Fi and sends temperature and humidity readings from the DHT11 sensor to Blynk every few seconds.</p>
+          <ul class="small">
+            <li>Libraries used: <code>ESP8266WiFi.h</code>, <code>BlynkSimpleEsp8266.h</code>, and <code>DHT.h</code>.</li>
+            <li><strong>Auth token</strong> links the hardware to your Blynk project. (Example: <code>"YourAuthTokenHere"</code>)</li>
+            <li><strong>Wi‑Fi setup:</strong> Replace <code>ssid</code> and <code>pass</code> with your own Wi‑Fi credentials in code (e.g., <code>ssid[] = "YourWiFi";</code>).</li>
+            <li><strong>DHT sensor:</strong> Reads humidity and temperature using <code>dht.readHumidity()</code> and <code>dht.readTemperature()</code>.</li>
+            <li><strong>Blynk virtual pins:</strong> Temperature → V5, Humidity → V6 for displaying on app widgets.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Code Snippet Example</h2>
+          <pre><code>#define BLYNK_TEMPLATE_ID "TMPLxxxxxxx"
+char auth[] = "YourAuthTokenHere"; // replace with your own Blynk token
+char ssid[] = "YourWiFi";           // your WiFi name
+char pass[] = "YourPassword";       // your WiFi password</code></pre>
+          <p class="small">👉 For the full working code and library setup, visit the official GitHub repository above.</p>
+        </section>
+
+        <section>
+          <h2>Blynk Dashboard Setup</h2>
+          <ol class="small">
+            <li>Install the <strong>Blynk IoT</strong> app.</li>
+            <li>Create a new Template and Device.</li>
+            <li>Add two Value Display widgets: bind V5 for temperature and V6 for humidity.</li>
+            <li>Power your NodeMCU, open the app, and observe live readings.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Troubleshooting & Tips</h2>
+          <ul class="small">
+            <li>Double-check wiring and ensure the DHT11 module is powered by 3.3V.</li>
+            <li>Replace the Auth Token with your own from Blynk when cloning the project.</li>
+            <li>Ensure stable Wi‑Fi connection and good USB cable for powering the NodeMCU.</li>
+            <li>Keep the DHT11 away from direct heat for accurate readings.</li>
+          </ul>
+        </section>
+
+      </main>
+
+      <aside class="card">
+        <h3>Quick Setup Checklist</h3>
+        <ol class="small">
+          <li>Wire DHT11 to NodeMCU (VCC → 3V3, GND → GND, DATA → D4)</li>
+          <li>Install Arduino IDE & ESP8266 board support</li>
+          <li>Install libraries: Blynk, DHT</li>
+          <li>Insert Wi‑Fi credentials and Blynk token</li>
+          <li>Upload code and open Serial Monitor (9600 baud)</li>
+        </ol>
+        <div style="margin-top:14px">
+          <a class="btn" href="https://github.com/rohithnagendra/IOT/tree/main/WeatherMonitorUsingBlynk" target="_blank">📁 View Full Code on GitHub</a>
+        </div>
+      </aside>
+    </div>
+
+    <footer style="text-align:center;margin-top:18px;color:#6b7280;font-size:13px">Created for classroom learning — View, fork, and explore the full project on <a href="https://github.com/rohithnagendra/IOT/tree/main/WeatherMonitorUsingBlynk" target="_blank">GitHub</a>.</footer>
+  </div>
+</body>
+</html>
