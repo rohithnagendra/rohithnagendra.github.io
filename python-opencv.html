@@ -1,70 +1,176 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Function Overview — OpenCV &amp; Python Demo</title>
-  <meta name="description" content="A concise blog post that explains the functions provided in the opencv_concepts_combined.py demo and points readers to the GitHub repository.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OpenCV Master — Detailed Function Reference</title>
   <style>
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#f6f8fb;color:#0b1220}
-    .container{max-width:900px;margin:48px auto;padding:28px;background:#fff;border-radius:10px;box-shadow:0 8px 30px rgba(15,23,42,0.06)}
-    h1{margin-top:0}
-    p.lead{color:#475569}
-    .functions{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
-    .fn{border-left:4px solid #2563eb;padding:12px 14px;background:#fbfdff;border-radius:6px}
-    .fn h3{margin:0 0 6px}
-    code{background:#eef2ff;padding:2px 6px;border-radius:6px;font-family:Menlo,Monaco,Consolas,'Courier New',monospace}
-    a.btn{display:inline-block;margin-top:12px;padding:10px 14px;border-radius:8px;background:#2563eb;color:#fff;text-decoration:none}
-    footer{margin-top:20px;color:#64748b;font-size:14px}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0b1220;color:#e6eef6}
+    .wrap{max-width:1000px;margin:36px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px}
+    h1{margin:0 0 6px;font-size:1.9rem}
+    p.lead{color:#9fb7c6}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    nav a{background:#062e36;padding:8px 10px;border-radius:8px;color:#8fe7f5;text-decoration:none;font-weight:600}
+    section.card{background:rgba(255,255,255,0.01);padding:16px;border-radius:10px;margin-top:14px;border:1px solid rgba(255,255,255,0.02)}
+    h2{margin:0 0 6px}
+    .muted{color:#98aebf}
+    pre{background:#031426;padding:12px;border-radius:8px;overflow:auto;color:#cfeefb}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:#06b6d4;color:#042027;text-decoration:none;font-weight:700}
+    dl{margin:10px 0}
+    dt{font-weight:700}
+    dd{margin:0 0 8px 0;color:#bcd7e0}
+    footer{margin-top:20px;color:#7f98a9;font-size:0.9rem}
+    code{background:rgba(255,255,255,0.02);padding:2px 6px;border-radius:6px}
   </style>
 </head>
 <body>
-  <main class="container">
-    <h1>Function Reference — OpenCV &amp; Python Demo</h1>
-    <p class="lead">This post documents the core functions provided in the combined demo script and points you to the full source on GitHub.</p>
+  <div class="wrap">
+    <header>
+      <h1>OpenCV Master — Detailed Function Reference</h1>
+      <p class="lead">A function-by-function explanation of the combined Python utilities. Link to source: <a class="btn" href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">GitHub: opencv_concepts_combined.py</a></p>
+    </header>
 
-    <section class="functions">
-      <div class="fn">
-        <h3>Image utilities</h3>
-        <p><strong><code>load_image(path)</code></strong> — Load an image using OpenCV and return the BGR image or <code>None</code> if loading failed.</p>
-        <p><strong><code>show_image(winname, img, wait=True)</code></strong> — Display an image in a named window. If <code>wait</code> is <code>True</code> the function waits for a keypress and closes the window.</p>
-        <p><strong><code>print_image_info(img, name='image')</code></strong> — Print image metadata: shape, size, and dtype.</p>
-        <p><strong><code>access_pixel(img, x, y)</code></strong> — Safely read the BGR value of a pixel and print its blue channel. Returns the pixel value.</p>
-        <p><strong><code>modify_pixels(img, modifications)</code></strong> — Modify pixels in-place. Pass a dictionary like <code>{(x,y): (B,G,R)}</code> and the function will update those coordinates.</p>
-      </div>
+    <nav>
+      <a href="#utils">Utilities</a>
+      <a href="#video">Video Player</a>
+      <a href="#show">Show Image</a>
+      <a href="#roi">ROI Copy/Paste</a>
+      <a href="#hsv">HSV Conversion</a>
+      <a href="#split">Channel Split</a>
+      <a href="#info">Image Info</a>
+      <a href="#draw">Draw Shapes</a>
+      <a href="#plots">Plotting</a>
+    </nav>
 
-      <div class="fn">
-        <h3>Video utilities</h3>
-        <p><strong><code>capture_video(device=0)</code></strong> — Open the system camera (default device <code>0</code>) and stream frames to a window named <code>'frame'</code>. Press <code>ESC</code> to stop capture and close the window.</p>
-      </div>
+    <section class="card" id="utils">
+      <h2>Utilities</h2>
+      <p class="muted">Helper functions used by multiple demos.</p>
+      <dl>
+        <dt>safe_imread(path)</dt>
+        <dd>Loads an image using <code>cv.imread</code>. Raises a descriptive <code>FileNotFoundError</code> if the image cannot be read. Use this to fail fast with a clear message when paths are wrong.</dd>
 
-      <div class="fn">
-        <h3>Image analysis</h3>
-        <p><strong><code>check_image_load_and_show(path)</code></strong> — Convenience wrapper that attempts to load an image and shows it if successful, otherwise logs an error.</p>
-        <p><strong><code>classify_brightness(path)</code></strong> — Loads an image, converts to grayscale for display, computes an average brightness and classifies it as <em>dark</em>, <em>medium</em>, or <em>bright</em>.</p>
-      </div>
+        <dt>safe_videocapture(path)</dt>
+        <dd>Opens a video capture from a file path or device ID using <code>cv.VideoCapture</code>. Raises if the capture cannot be opened. Accepts numeric webcam IDs when string is numeric.</dd>
+      </dl>
+    </section>
 
-      <div class="fn">
-        <h3>Small Python demos</h3>
-        <p><strong><code>list_demo()</code></strong> — Runs a set of list operations demonstrating indexing, slicing, append/insert/remove, and iteration.</p>
-        <p><strong><code>functions_demo()</code></strong> — Demonstrates function types: normal functions, default args, <code>*args</code>, <code>**kwargs</code>, and a lambda example.</p>
-        <p><strong><code>while_loop_demo()</code></strong> and <strong><code>for_loop_demo()</code></strong> — Simple examples of loop usage and control flow.</p>
-      </div>
-
-      <div class="fn">
-        <h3>CLI and orchestration</h3>
-        <p>The script provides a <code>main()</code> and command-line arguments so you can run individual demos or <code>--all</code> to run everything. The CLI parsing is implemented with <code>argparse</code>.</p>
+    <section class="card" id="video">
+      <h2>play_video(video_path: str = "vtest.avi", delay_ms: int = 10)</h2>
+      <p class="muted">Plays a video file or webcam feed in an OpenCV window.</p>
+      <h4>Parameters</h4>
+      <dl>
+        <dt>video_path</dt>
+        <dd>Path to a video file or a string/number for webcam id (e.g., <code>"0"</code>).</dd>
+        <dt>delay_ms</dt>
+        <dd>Frame display delay in milliseconds passed to <code>cv.waitKey</code>. Lower = faster playback.</dd>
+      </dl>
+      <h4>Behavior & Controls</h4>
+      <ul>
+        <li>Reads frames until EOF or until the user presses <code>ESC</code> (key code 27).</li>
+        <li>Releases the capture and calls <code>cv.destroyAllWindows()</code> on exit.</li>
+      </ul>
+      <div>
+        <strong>CLI:</strong>
+        <pre>python opencv_matplotlib_master.py --video vtest.avi
+python opencv_matplotlib_master.py --video 0</pre>
       </div>
     </section>
 
-    <section style="margin-top:18px">
-      <p>See the full source with examples and defaults on GitHub (open the file to view code and usage examples):</p>
-      <a class="btn" href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">View on GitHub</a>
+    <section class="card" id="show">
+      <h2>show_image_rgb_plot(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Displays the same image both in OpenCV (BGR) and Matplotlib (RGB) to illustrate color-order differences.</p>
+      <h4>Key points</h4>
+      <ul>
+        <li>OpenCV windows show the BGR buffer returned by <code>cv.imread</code>.</li>
+        <li>For Matplotlib, convert to RGB with <code>cv.cvtColor(img, cv.COLOR_BGR2RGB)</code> to avoid a blue/tinted image.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="roi">
+      <h2>roi_copy_paste_example(img_path: str = "hazard10.jpg")</h2>
+      <p class="muted">Shows how to slice a NumPy image to copy a region and paste it elsewhere; also demonstrates setting a rectangular region to a constant BGR color.</p>
+      <h4>Implementation notes</h4>
+      <ul>
+        <li>Use <code>roi = img[y1:y2, x1:x2].copy()</code> to safely copy a region into a new array.</li>
+        <li>Assigning back (<code>img[y1:y2, x1:x2] = roi</code>) will paste the content. Check bounds to avoid exceptions.</li>
+        <li>To paint a block with a color, assign a 3-element BGR scalar: <code>img[y1:y2, x1:x2] = np.array([B,G,R], dtype=np.uint8)</code>.</li>
+      </ul>
+      <p class="muted">Note: If you run on a different image, you will likely need to adjust the hard-coded coordinates.</p>
+    </section>
+
+    <section class="card" id="hsv">
+      <h2>show_hsv_conversion_and_plot(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Converts to HSV and visualizes original vs HSV-converted image (HSV is converted back to RGB for plotting).</p>
+      <h4>Why HSV?</h4>
+      <p class="muted">HSV separates hue (color) from value (brightness) and is often used for robust color segmentation.</p>
+    </section>
+
+    <section class="card" id="split">
+      <h2>split_and_show_channels(img_path: str = "lena.jpg")</h2>
+      <p class="muted">Splits BGR into individual channels and also shows H, S, V channels from an HSV conversion. Each channel is displayed as a single-channel image.</p>
+      <h4>Useful tips</h4>
+      <ul>
+        <li>To reconstruct the original image, use <code>cv.merge([b,g,r])</code>.</li>
+        <li>HSV channels are single-channel images; visualizing them directly shows intensity maps for hue/saturation/value.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="info">
+      <h2>show_image_info_and_conversions(img_path: str = "opencv-logo.png")</h2>
+      <p class="muted">Prints array metadata and shows grayscale, RGB, and HSV conversions so you can quickly inspect dimensions and channel counts.</p>
+      <h4>Output example</h4>
+      <pre>Original shape: (H, W, 3)
+Original size (num elements): H*W*3
+Gray shape: (H, W)
+Gray size: H*W</pre>
+    </section>
+
+    <section class="card" id="draw">
+      <h2>draw_shapes_example(save_to: str = None)</h2>
+      <p class="muted">Creates a 512x512 black canvas and draws: a thick colored line, a rectangle, a filled circle, a polygon, and text.</p>
+      <h4>API used</h4>
+      <ul>
+        <li><code>cv.line</code></li>
+        <li><code>cv.rectangle</code></li>
+        <li><code>cv.circle</code></li>
+        <li><code>cv.polylines</code></li>
+        <li><code>cv.putText</code></li>
+      </ul>
+      <div>
+        <strong>Save example:</strong>
+        <pre>python opencv_matplotlib_master.py --draw shapes.png</pre>
+      </div>
+    </section>
+
+    <section class="card" id="plots">
+      <h2>Matplotlib plot helpers</h2>
+      <p class="muted">Small demonstration plot functions for learning Matplotlib basics.</p>
+      <dl>
+        <dt>plot_line_example()</dt>
+        <dd>Plots x vs y with markers and dashed line. Demonstrates <code>plt.legend()</code> and axis labels.</dd>
+        <dt>plot_bar_example()</dt>
+        <dd>Simple categorical bar chart. Use <code>plt.bar()</code> with categories and values arrays.</dd>
+        <dt>plot_sine_example()</dt>
+        <dd>Plots <code>sin(x)</code> over a linspace and shows grid, title and legend.</dd>
+        <dt>plot_scatter_example()</dt>
+        <dd>Random scatter with edge colors for markers. Demonstrates alpha/transparency.</dd>
+      </dl>
+    </section>
+
+    <section class="card" id="cli">
+      <h2>Command-line wrapper</h2>
+      <p class="muted">The <code>argparse</code>-based CLI exposes the examples so you can run them individually or collectively using <code>--all</code>.</p>
+      <pre>Usage examples:
+python opencv_matplotlib_master.py --video vtest.avi
+python opencv_matplotlib_master.py --roi hazard10.jpg
+python opencv_matplotlib_master.py --plot sine
+python opencv_matplotlib_master.py --all</pre>
     </section>
 
     <footer>
-      <p>Want screenshots, inline code snippets, or a downloadable ZIP of the demo + example images? Reply and I&rsquo;ll add them.</p>
+      <p class="muted">Source &amp; original combined code: <a class="btn" href="https://github.com/rohithnagendra/Python/blob/master/opencv_concepts_combined.py" target="_blank">GitHub: opencv_concepts_combined.py</a></p>
+      <p class="muted">Want this exported as a standalone HTML file you can download or deployed to a simple static site? Reply and I will provide the downloadable file or a Markdown version.</p>
     </footer>
-  </main>
+  </div>
 </body>
 </html>
