@@ -2,7 +2,7 @@
 
 **Name:** Rohith Nagendra
 
-**Grade:** 8th Standard
+**Grade:** 9th Standard
 
 **Institution:** New Horizon International School
 
