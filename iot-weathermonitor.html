@@ -4,26 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Blynk Weather Monitor — ESP8266 + DHT11</title>
-  <style>
-    :root{--bg:#f3f6ff;--card:#ffffff;--accent:#0f4bd6;--muted:#556277}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#0b2545}
-    .wrap{max-width:980px;margin:26px auto;padding:20px}
-    header{background:linear-gradient(90deg,#123a8f,#0f78f0);color:#fff;padding:22px;border-radius:12px}
-    header h1{margin:0;font-size:22px}
-    header p{margin:6px 0 0;color:#d6e8ff}
-    .card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 8px 30px rgba(12,29,66,0.06)}
-    h2{color:var(--accent);margin-top:0}
-    pre{background:#0b1220;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
-    code{font-family:ui-monospace, SFMono-Regular,Consolas,Monaco,monospace}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
-    .small{color:var(--muted);font-size:14px}
-    .svg-box{background:#f8fbff;border-radius:8px;padding:10px;border:1px dashed #e6efff;text-align:center}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none}
-    a{text-decoration:none;color:#0f4bd6}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-  </style>
+  <!-- Styles moved to consolidated stylesheet (style.css). Add class "page-weathermonitor" to <body>. -->
 </head>
-<body>
+<body class="page-weathermonitor">
   <div class="wrap">
     <header>
       <h1>Blynk Weather Monitor — ESP8266 (NodeMCU) + DHT11</h1>
