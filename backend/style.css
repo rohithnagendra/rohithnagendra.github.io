@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --bg-1: #0f2027;
+    --bg-2: #2c5364;
+    --accent-1: #00fff7;
+    --accent-2: #ff00cc;
+    --card-bg: #18122B;
+    --text-on-card: #dffbfa;
+    --max-width: 760px;
+    --container-padding-desktop: 44px 54px 36px 54px;
+    --container-padding-mobile: 10px 8px;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+.container {
+    max-width: var(--max-width);
+    margin: 56px auto 0 auto;
+    background: var(--card-bg);
+    border-radius: 24px 24px 18px 18px;
+    box-shadow: 0 0 32px var(--accent-1), 0 2px 8px var(--accent-2);
+    padding: var(--container-padding-desktop);
+    position: relative;
+    border: 3px solid var(--accent-1);
+}
+.animated-header {
+    color: var(--accent-1);
+    font-size: 2.4em;
+    margin-bottom: 18px;
+    animation: neonGlow 1.2s cubic-bezier(.4,0,.2,1);
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-shadow: 0 0 8px var(--accent-1), 0 0 24px var(--accent-2), 2px 2px 0 var(--card-bg);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+@keyframes neonGlow {
+    0% { opacity: 0; text-shadow: none; }
+    100% { opacity: 1; text-shadow: 0 0 8px var(--accent-1), 0 0 24px var(--accent-2), 2px 2px 0 var(--card-bg); }
+}
+.greet-btn {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 16px 40px;
+    background: linear-gradient(90deg, var(--accent-2) 0%, #333399 100%);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.25em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 16px var(--accent-2), 0 2px 8px var(--accent-1);
+    transition: background 0.3s, box-shadow 0.2s, transform 0.2s;
+    outline: none;
+    letter-spacing: 2px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.greet-btn:hover {
+    background: linear-gradient(90deg, var(--accent-1) 0%, var(--accent-2) 100%);
+    box-shadow: 0 0 32px var(--accent-1), 0 8px 32px var(--accent-2);
+    transform: scale(1.09) rotate(1deg);
+}
+.info {
+    margin-bottom: 18px;
+    font-size: 1.15em;
+    color: var(--accent-2);
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+}
+.label {
+    font-weight: 900;
+    color: var(--accent-1);
+    text-shadow: 0 0 4px var(--accent-2);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.collapsible {
+    background-color: var(--bg-2);
+    color: var(--accent-1);
+    cursor: pointer;
+    padding: 20px 30px;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    text-align: left;
+    outline: none;
+    font-size: 1.22em;
+    margin-top: 28px;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    box-shadow: 0 0 12px rgba(255,0,204,0.27);
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-bottom: 3px solid var(--accent-2);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.collapsible:hover, .collapsible.active {
+    background-color: var(--card-bg);
+    color: var(--accent-2);
+    box-shadow: 0 0 32px var(--accent-1), 0 8px 32px var(--accent-2);
+}
+.content {
+    padding: 0 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(.4,0,.2,1);
+    background: var(--card-bg);
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 0 8px rgba(0,255,247,0.28);
+}
+.content p {
+    color: var(--text-on-card);
+    line-height: 1.9;
+    margin: 18px 0;
+    font-size: 1.13em;
+    font-family: 'Roboto', Arial, sans-serif;
+    text-shadow: 0 0 4px var(--accent-2);
+}
+.footer {
+    width: 100%;
+    /* darken the pink start to improve contrast with footer text */
+    background: linear-gradient(90deg, #8a003f 0%, #333399 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 28px 0 18px 0;
+    position: static;
+    font-size: 1.18em;
+    letter-spacing: 2px;
+    z-index: 10;
+    margin-top: 48px;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 -4px 32px var(--accent-1), 0 -2px 8px rgba(255,0,204,0.27);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 12px;
+    transition: color 0.2s, text-shadow 0.2s;
+    font-weight: 900;
+    text-shadow: 0 0 8px var(--accent-1), 0 0 4px var(--accent-2);
+    font-family: 'Roboto', Arial, sans-serif;
+}
+.footer a:hover {
+    color: #ffb3e6;
+    text-decoration: underline  var(--accent-1);
+    text-shadow: 0 0 16px var(--accent-1), 0 0 8px var(--accent-2);
+}
+@media (max-width: 600px) {
+    .container {
+        padding: var(--container-padding-mobile);
+    }
+    .collapsible {
+        font-size: 1em;
+        padding: 10px 10px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    .content {
+        padding: 0 10px;
+    }
+}
+
+/* Extra mobile polish for very small screens */
+@media (max-width: 480px) {
+    .animated-header { font-size: 1.6em; letter-spacing: 1px; }
+    .container { margin-top: 24px; border-radius: 16px; }
+    .info { font-size: 1em; }
+    .content p { font-size: 1em; line-height: 1.6; }
+    .collapsible { padding: 12px 12px; font-size: 1em; }
+}
+
+/* Consolidated page-specific styles (moved from inline styles in other pages)
+   Scoped by adding the corresponding class to the <body> tag of each page.
+   - Add class "page-iot" to iot.html
+   - Add class "page-weathermonitor" to iot-weathermonitor.html
+   - Add class "page-pympl" to python-matplotlib.html
+   - Add class "page-pyopencv" to python-opencv.html
+*/
+
+/* Styles for iot.html */
+body.page-iot {font-family: Arial, sans-serif; background: #e6f2ff; color: #1f2937; margin: 0; padding: 0;}
+body.page-iot header {background: linear-gradient(90deg, #1e3a8a, #3b82f6); color: white; padding: 30px 20px; text-align: center;}
+body.page-iot main {max-width: 900px; margin: 20px auto; background: white; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px;}
+body.page-iot h1, body.page-iot h2 {color: #1e3a8a;}
+body.page-iot p {line-height: 1.6;}
+body.page-iot .highlight {background: #dbeafe; padding: 10px; border-left: 4px solid #1e3a8a; border-radius: 6px;}
+body.page-iot .image-box {text-align: center; margin: 20px 0;}
+body.page-iot .image-box img {max-width: 100%; border-radius: 8px;}
+body.page-iot footer {text-align: center; padding: 10px; font-size: 14px; color: #6b7280; margin-top: 30px;}
+
+/* Styles for iot-weathermonitor.html */
+body.page-weathermonitor{--bg:#f3f6ff;--card:#ffffff;--accent:#0f4bd6;--muted:#556277}
+body.page-weathermonitor body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#0b2545}
+body.page-weathermonitor .wrap{max-width:980px;margin:26px auto;padding:20px}
+body.page-weathermonitor header{background:linear-gradient(90deg,#123a8f,#0f78f0);color:#fff;padding:22px;border-radius:12px}
+body.page-weathermonitor header h1{margin:0;font-size:22px}
+body.page-weathermonitor header p{margin:6px 0 0;color:#d6e8ff}
+body.page-weathermonitor .card{background:var(--card);padding:18px;border-radius:12px;margin-top:18px;box-shadow:0 8px 30px rgba(12,29,66,0.06)}
+body.page-weathermonitor h2{color:var(--accent);margin-top:0}
+body.page-weathermonitor pre{background:#0b1220;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
+body.page-weathermonitor code{font-family:ui-monospace, SFMono-Regular,Consolas,Monaco,monospace}
+body.page-weathermonitor .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+body.page-weathermonitor .small{color:var(--muted);font-size:14px}
+body.page-weathermonitor .svg-box{background:#f8fbff;border-radius:8px;padding:10px;border:1px dashed #e6efff;text-align:center}
+body.page-weathermonitor .btn{display:inline-block;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none}
+body.page-weathermonitor a{text-decoration:none;color:#0f4bd6}
+@media(max-width:900px){body.page-weathermonitor .grid{grid-template-columns:1fr}}
+
+/* Styles for python-matplotlib.html */
+body.page-pympl{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--text:#e6eef6}
+body.page-pympl body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.6;margin:0;background:linear-gradient(180deg,#071426 0%,#081826 100%);color:var(--text)}
+body.page-pympl .container{max-width:900px;margin:40px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+body.page-pympl header{display:flex;align-items:center;gap:16px}
+body.page-pympl header h1{margin:0;font-size:1.8rem}
+body.page-pympl header p{margin:0;color:var(--muted)}
+body.page-pympl nav{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+body.page-pympl nav a{color:var(--accent);text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(6,182,212,0.06);font-weight:600}
+body.page-pympl section.card{margin-top:22px;padding:18px;border-radius:10px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.02)}
+body.page-pympl .muted{color:var(--muted);font-size:0.95rem}
+body.page-pympl pre{background:#031426;padding:12px;border-radius:8px;color:#cfeefb;overflow:auto}
+body.page-pympl .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#042027;font-weight:700;text-decoration:none}
+
+/* Styles for python-opencv.html */
+body.page-pyopencv{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:#0b1220;color:#e6eef6}
+body.page-pyopencv .wrap{max-width:1000px;margin:36px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px}
+body.page-pyopencv h1{margin:0 0 6px;font-size:1.9rem}
+body.page-pyopencv p.lead{color:#9fb7c6}
+body.page-pyopencv nav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+body.page-pyopencv nav a{background:#062e36;padding:8px 10px;border-radius:8px;color:#8fe7f5;text-decoration:none;font-weight:600}
+body.page-pyopencv section.card{background:rgba(255,255,255,0.01);padding:16px;border-radius:10px;margin-top:14px;border:1px solid rgba(255,255,255,0.02)}
+body.page-pyopencv .muted{color:#98aebf}
+body.page-pyopencv pre{background:#031426;padding:12px;border-radius:8px;overflow:auto;color:#cfeefb}
+body.page-pyopencv .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:#06b6d4;color:#042027;text-decoration:none;font-weight:700}
+
+
+/* Accessibility & focus polish */
+.skip:focus {
+    position: relative;
+    left: 0;
+    top: 0;
+    background: #ffffff;
+    color: #000000;
+    padding: 8px 12px;
+    z-index: 9999;
+    border-radius: 4px;
+}
+.collapsible:focus-visible {
+    outline: 3px solid rgba(0,255,247,0.6);
+    outline-offset: 2px;
+}
+a:focus-visible {
+    outline: 3px solid rgba(255,0,204,0.35);
+    outline-offset: 2px;
+}
+
+/* Slight footer padding reduction on small screens */
+@media (max-width: 600px) {
+    .footer { padding: 18px 0 12px 0; font-size: 1em; }
+}
